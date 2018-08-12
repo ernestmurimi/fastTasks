@@ -1,3 +1,5 @@
+package task3;
+
 class LocationForVacation {
 	private int location;
 	private boolean visited;

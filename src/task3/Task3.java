@@ -1,11 +1,13 @@
+package task3;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class Task3 {
+public class Task3 {
 	private List<LocationForVacation> allDiffLocations;
 	private List<Integer> allRoadsLengths;
 
-	Task3() {
+	public Task3() {
 		allDiffLocations = new ArrayList<>();
 		allRoadsLengths = new ArrayList<>();
 	}
@@ -72,7 +74,7 @@ class Task3 {
 		return shortestRoad;
 	}
 
-	int solution(int[] A) {
+	public int solution(int[] A) {
 		excludeDifferentLocations(A);
 		for (int i = 0; i < A.length; i++) {
 			Integer currRoadLength = null;

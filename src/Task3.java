@@ -72,37 +72,11 @@ class Task3 {
 		return shortestRoad;
 	}
 
-	/*
-	Algorithm:
-		foreach(dzień z wycieczką)
-			- pobieram pierwszą liczbę i zapisuję jej indeks
-			while(istnieje następna liczba)
-				- pobieram następną liczbę
-				- sprawdzam odhaczenie liczby
-					- jeśli odhaczona, to wykonuję kolejny obieg pętli while
-					- jeśli nie, to odhaczam i przechodzę do kolejnego kroku
-				- sprawdzam czy wszystkie liczby są odhaczone
-					- jeśli tak
-						- zapisuję indeks ostatniej liczby
-						- wyliczam i zapisuję długość drogi
-						- cofam odhaczenie wszystkich liczb
-					- jeśli nie, to wykonuję kolejny obieg pętli while
-			- jeśli nie wyliczono żadnej długości drogi, to przerywamy pętlę foreach
-		- przechodzimy przez wszystkie długości dróg, jakie zapisaliśmy i wybieramy tą najkrótszą
-	*/
-
 	int solution(int[] A) {
 		excludeDifferentLocations(A);
 		for (int i = 0; i < A.length; i++) {
 			Integer currRoadLength = null;
-			markLocationAsVisited(A[i]);
-			if (isAllLocationsVisited()) {
-				currRoadLength = i + 1;
-				allRoadsLengths.add(currRoadLength);
-				rollbackAllVisitingMarks();
-				break;
-			}
-			for (int j = i + 1; j < A.length; j++) {
+			for (int j = i; j < A.length; j++) {
 				if (!isLocationVisited(A[j])) {
 					markLocationAsVisited(A[j]);
 					if (isAllLocationsVisited()) {

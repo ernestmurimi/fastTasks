@@ -14,8 +14,7 @@ public class Main {
 			}
 			case "3": {
 				Task3 task3 = new Task3();
-//				int[] arr = {7, 3, 7, 3, 1, 3, 4, 1};
-				int[] arr = {9};
+				int[] arr = {7, 3, 7, 3, 1, 3, 4, 1};
 				System.out.println(task3.solution(arr));
 				break;
 			}

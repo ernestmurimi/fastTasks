@@ -95,4 +95,8 @@ public class Task3 {
 		}
 		return theShortestRoad();
 	}
+
+	public int solution2(int[] A) {
+		return 0;
+	}
 }

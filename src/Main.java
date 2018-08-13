@@ -17,7 +17,26 @@ public class Main {
 			case "3": {
 				Task3 task3 = new Task3();
 				int[] arr = {7, 3, 7, 3, 1, 3, 4, 1};
-				System.out.println(task3.solution(arr));
+
+				int numberOfSamples = 100000;
+				long startTime, stopTime;
+				long sum1 = 0L;
+				long sum2 = 0L;
+
+				for (int i = 0; i < numberOfSamples; i++) {
+					startTime = System.nanoTime();
+					task3.solution(arr);
+					stopTime = System.nanoTime();
+					sum1 += stopTime - startTime;
+
+					startTime = System.nanoTime();
+					task3.solution2(arr);
+					stopTime = System.nanoTime();
+					sum2 += stopTime - startTime;
+				}
+				System.out.println("Implementation #1: " + sum1 / (float) numberOfSamples + " nanoseconds");
+				System.out.println("Implementation #2: " + sum2 / (float) numberOfSamples + " nanoseconds");
+
 				break;
 			}
 		}

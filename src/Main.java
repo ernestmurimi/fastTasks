@@ -18,6 +18,11 @@ public class Main {
 				System.out.println(task3.solution(arr));
 				break;
 			}
+			case "7": {
+				Task7 task7 = new Task7();
+				System.out.println(task7.compressing("abbccc"));
+				break;
+			}
 		}
 	}
 }

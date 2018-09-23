@@ -18,6 +18,12 @@ public class Main {
 				System.out.println(task3.solution(arr));
 				break;
 			}
+			case "4": {
+				Task4 task4 = new Task4();
+				int[] arr = {2, 2, 2, 2, 1, 2, -1, 2, 1, 3};
+				System.out.println(task4.solution(arr));
+				break;
+			}
 			case "7": {
 				Task7 task7 = new Task7();
 				System.out.println(task7.compressing("abbccc"));

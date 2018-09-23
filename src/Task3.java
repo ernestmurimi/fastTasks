@@ -1,10 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Task3 {
+class Task3 {
 	private Map<Integer, Boolean> allDiffLocations;
 
-	public Task3() {
+	Task3() {
 		allDiffLocations = new HashMap<>();
 	}
 

@@ -24,6 +24,12 @@ public class Main {
 				System.out.println(task4.solution(arr));
 				break;
 			}
+			case "5": {
+				Task5 task5 = new Task5();
+				int[] arr = {1, 5, 3, 3, 7};
+				System.out.println(task5.solution(arr));
+				break;
+			}
 			case "7": {
 				Task7 task7 = new Task7();
 				System.out.println(task7.compressing("abbccc"));

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -28,6 +30,12 @@ public class Main {
 				Task5 task5 = new Task5();
 				int[] arr = {1, 5, 3, 3, 7};
 				System.out.println(task5.solution(arr));
+				break;
+			}
+			case "6": {
+				Task6 task6 = new Task6();
+				int[] arr = task6.solution();
+				System.out.println(Arrays.toString(arr));
 				break;
 			}
 			case "7": {

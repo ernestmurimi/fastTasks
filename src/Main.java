@@ -37,7 +37,7 @@ public class Main {
 			case "6": {
 				try {
 					Task6 task6 = new Task6();
-					int[] arr = task6.solution();
+					int[] arr = task6.solution(5);
 					System.out.println(Arrays.toString(arr));
 				} catch (ThereIsNoPrimeNumbers ex) {
 					System.out.println(ex.getMessage());

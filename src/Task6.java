@@ -29,15 +29,34 @@ class Task6 {
 		return true;
 	}
 
-	int[] solution() throws ThereIsNoPrimeNumbers {
+	private int getMaxNumberDivisibleByEleven(int numberOfDigits) {
+		for (int i = getMaxNumber(numberOfDigits); ; i--) {
+			if ((i % 10) % 2 != 0 && i % 11 == 0) {
+				return i;
+			} else if (i % 11 == 0) {
+				return i - 11;
+			}
+		}
+	}
+
+	private int getMaxNumber(int numberOfDigits) {
+		return (int) Math.pow(10, numberOfDigits) - 1;
+	}
+
+	int[] solution(int numberOfDigits) throws ThereIsNoPrimeNumbers {
 		int[] multipliers = new int[2];
 		int largestPalindrome = 0;
 		boolean palindromeFound = false;
+		int maxOddNumberDivisibleByEleven = getMaxNumberDivisibleByEleven(numberOfDigits);
+		int maxNumberWithDefinedDigits = getMaxNumber(numberOfDigits);
+		int maxNumberWithOneLessDigit = getMaxNumber(numberOfDigits - 1);
 
-		// We check only odd numbers (even numbers are not prime)
-		for (int p = 99979; p > 9999; p -= 2 * 11) {
-			for (int q = 99999; q > 9999; q -= 2) {
-				if (isPrime(p) && isPrime(q)) {
+		for (int p = maxOddNumberDivisibleByEleven; p > maxNumberWithOneLessDigit; p -= 2 * 11) {
+			if (!isPrime(p)) {
+				continue;
+			}
+			for (int q = maxNumberWithDefinedDigits; q > maxNumberWithOneLessDigit; q -= 2) {
+				if (isPrime(q)) {
 					int product = p * q;
 					if (product > largestPalindrome && isPalindrome(product)) {
 						palindromeFound = true;
@@ -52,7 +71,7 @@ class Task6 {
 			}
 		}
 		if (!palindromeFound) {
-			throw new ThereIsNoPrimeNumbers("There is no palindrome number which is the product of two prime five-digit numbers!");
+			throw new ThereIsNoPrimeNumbers("There is no palindrome number which is the product of two prime " + numberOfDigits + "-digit numbers!");
 		}
 		return multipliers;
 	}

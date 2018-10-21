@@ -1,3 +1,5 @@
+import exceptions.ThereIsNoPrimeNumbers;
+
 class Task6 {
 	Task6() {
 	}
@@ -12,7 +14,7 @@ class Task6 {
 		return reverseNumber == originalNumber;
 	}
 
-	boolean isPrime(int number) {
+	private boolean isPrime(int number) {
 		if (number == 2) {
 			return true;
 		}
@@ -27,14 +29,18 @@ class Task6 {
 		return true;
 	}
 
-	int[] solution() {
+	int[] solution() throws ThereIsNoPrimeNumbers {
 		int[] multipliers = new int[2];
 		int largestPalindrome = 0;
-		for (int p = 99990; p > 9999; p -= 11) {    // Is "p" never prime???
-			for (int q = 99999; q > 9999; q--) {
-				if (isPrime(p) && isPrime(q)) {    // We can't check it in every loop - correct it!
+		boolean palindromeFound = false;
+
+		// We check only odd numbers (even numbers are not prime)
+		for (int p = 99979; p > 9999; p -= 2 * 11) {
+			for (int q = 99999; q > 9999; q -= 2) {
+				if (isPrime(p) && isPrime(q)) {
 					int product = p * q;
 					if (product > largestPalindrome && isPalindrome(product)) {
+						palindromeFound = true;
 						largestPalindrome = product;
 						multipliers[0] = p;
 						multipliers[1] = q;
@@ -44,6 +50,9 @@ class Task6 {
 					}
 				}
 			}
+		}
+		if (!palindromeFound) {
+			throw new ThereIsNoPrimeNumbers("There is no palindrome number which is the product of two prime five-digit numbers!");
 		}
 		return multipliers;
 	}

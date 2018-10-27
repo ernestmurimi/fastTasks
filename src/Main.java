@@ -1,5 +1,3 @@
-import exceptions.ThereIsNoPrimeNumbers;
-
 import java.util.Arrays;
 
 public class Main {
@@ -35,13 +33,10 @@ public class Main {
 				break;
 			}
 			case "6": {
-				try {
-					Task6 task6 = new Task6();
-					int[] arr = task6.solution(5);
-					System.out.println(Arrays.toString(arr));
-				} catch (ThereIsNoPrimeNumbers ex) {
-					System.out.println(ex.getMessage());
-				}
+				Task6 task6 = new Task6();
+				int[] arr = task6.solution(5);
+				System.out.println(Arrays.toString(arr));
+				System.out.println(arr[0] + " * " + arr[1] + " = " + arr[0] * arr[1]);
 				break;
 			}
 			case "7": {

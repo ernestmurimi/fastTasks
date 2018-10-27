@@ -1,15 +1,13 @@
-import exceptions.ThereIsNoPrimeNumbers;
-
 class Task6 {
 	Task6() {
 	}
 
-	private boolean isPalindrome(int number) {
-		int originalNumber = number;
-		int reverseNumber = 0;
+	private boolean isPalindrome(double number) {
+		double originalNumber = number;
+		double reverseNumber = 0;
 		while (number > 0) {
 			reverseNumber = reverseNumber * 10 + number % 10;
-			number = number / 10;
+			number = Math.floor(number / 10);
 		}
 		return reverseNumber == originalNumber;
 	}
@@ -29,49 +27,31 @@ class Task6 {
 		return true;
 	}
 
-	private int getMaxNumberDivisibleByEleven(int numberOfDigits) {
-		for (int i = getMaxNumber(numberOfDigits); ; i--) {
-			if ((i % 10) % 2 != 0 && i % 11 == 0) {
-				return i;
-			} else if (i % 11 == 0) {
-				return i - 11;
-			}
-		}
-	}
-
 	private int getMaxNumber(int numberOfDigits) {
 		return (int) Math.pow(10, numberOfDigits) - 1;
 	}
 
-	int[] solution(int numberOfDigits) throws ThereIsNoPrimeNumbers {
+	int[] solution(int numberOfDigits) {
 		int[] multipliers = new int[2];
-		int largestPalindrome = 0;
-		boolean palindromeFound = false;
-		int maxOddNumberDivisibleByEleven = getMaxNumberDivisibleByEleven(numberOfDigits);
-		int maxNumberWithDefinedDigits = getMaxNumber(numberOfDigits);
-		int maxNumberWithOneLessDigit = getMaxNumber(numberOfDigits - 1);
+		double largestPalindrome = 0;
+		int maxNumber = getMaxNumber(numberOfDigits);
+		int minNumber = getMaxNumber(numberOfDigits - 1);
 
-		for (int p = maxOddNumberDivisibleByEleven; p > maxNumberWithOneLessDigit; p -= 2 * 11) {
+		for (int p = maxNumber; p > minNumber; p -= 2) {
 			if (!isPrime(p)) {
 				continue;
 			}
-			for (int q = maxNumberWithDefinedDigits; q > maxNumberWithOneLessDigit; q -= 2) {
-				if (isPrime(q)) {
-					int product = p * q;
-					if (product > largestPalindrome && isPalindrome(product)) {
-						palindromeFound = true;
-						largestPalindrome = product;
-						multipliers[0] = p;
-						multipliers[1] = q;
-						break;
-					} else if (product < largestPalindrome) {
-						break;
-					}
+			for (int q = p; q > minNumber; q -= 2) {
+				double product = (double) p * (double) q;
+				if (product < largestPalindrome) {
+					break;
+				} else if (isPrime(q) && product > largestPalindrome && isPalindrome(product)) {
+					largestPalindrome = product;
+					multipliers[0] = p;
+					multipliers[1] = q;
+					break;
 				}
 			}
-		}
-		if (!palindromeFound) {
-			throw new ThereIsNoPrimeNumbers("There is no palindrome number which is the product of two prime " + numberOfDigits + "-digit numbers!");
 		}
 		return multipliers;
 	}

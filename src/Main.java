@@ -36,7 +36,6 @@ public class Main {
 				Task6 task6 = new Task6();
 				int[] arr = task6.solution(5);
 				System.out.println(Arrays.toString(arr));
-				System.out.println(arr[0] + " * " + arr[1] + " = " + arr[0] * arr[1]);
 				break;
 			}
 			case "7": {

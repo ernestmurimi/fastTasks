@@ -1,12 +1,20 @@
+package task3;
+
 import java.util.HashMap;
 import java.util.Map;
 
-class Task3 {
-	private Map<Integer, Boolean> allDiffLocations;
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		int[] arr = {7, 3, 7, 3, 1, 3, 4, 1};
+		System.out.println(obj.solution(arr));
+	}
 
-	Task3() {
+	public Solution() {
 		allDiffLocations = new HashMap<>();
 	}
+
+	private Map<Integer, Boolean> allDiffLocations;
 
 	private void excludeDifferentLocations(int[] locations) {
 		for (int curr : locations) {
@@ -42,9 +50,9 @@ class Task3 {
 		}
 	}
 
-	int solution(int[] A) {
+	public int solution(int[] A) {
 		excludeDifferentLocations(A);
-		Integer shortestRoad = Integer.MAX_VALUE;
+		int shortestRoad = Integer.MAX_VALUE;
 		for (int i = 0; i < A.length; i++) {
 			for (int j = i; j < A.length; j++) {
 				if (!isLocationVisited(A[j])) {

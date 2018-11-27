@@ -1,8 +1,15 @@
-class Task7 {
-	Task7() {
+package task7;
+
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		System.out.println(obj.solution("abbccc"));
 	}
 
-	String compressing(String toCompress) {
+	public Solution() {
+	}
+
+	public String solution(String toCompress) {
 		StringBuilder compressedTxtAsBuilder = new StringBuilder();
 		char currentChar = '\0';
 		int counter = 0;
@@ -13,7 +20,7 @@ class Task7 {
 			} else {
 				counter++;
 			}
-			if (i + 1 < toCompress.length() && toCompress.charAt(i + 1) != currentChar || i + 1 >= toCompress.length()) {
+			if (i + 1 >= toCompress.length() || toCompress.charAt(i + 1) != currentChar) {
 				compressedTxtAsBuilder.append(Integer.toString(counter)).append(currentChar);
 			}
 		}

@@ -1,12 +1,19 @@
+package task1;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Task1 {
-	Task1() {
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		System.out.println(obj.solution("Forget CVs..Save time . x x"));
 	}
 
-	int solution(String S) {
+	public Solution() {
+	}
+
+	public int solution(String S) {
 		List<String> sentences = new ArrayList<>(Arrays.asList(S.split("[.?!]", -2)));
 		sentences.removeAll(Arrays.asList("", null));
 		int maxWords = 0;

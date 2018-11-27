@@ -1,5 +1,15 @@
-class Task6 {
-	Task6() {
+package task6;
+
+import java.util.Arrays;
+
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		int[] arr = obj.solution(5);
+		System.out.println(Arrays.toString(arr));
+	}
+
+	public Solution() {
 	}
 
 	private boolean isPalindrome(double number) {
@@ -31,7 +41,7 @@ class Task6 {
 		return (int) Math.pow(10, numberOfDigits) - 1;
 	}
 
-	int[] solution(int numberOfDigits) {
+	public int[] solution(int numberOfDigits) {
 		int[] multipliers = new int[2];
 		double largestPalindrome = 0;
 		int maxNumber = getMaxNumber(numberOfDigits);

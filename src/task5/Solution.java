@@ -1,10 +1,17 @@
-class Task5 {
+package task5;
+
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		int[] arr = {1, 5, 3, 3, 7};
+		System.out.println(obj.solution(arr));
+	}
+
+	public Solution() {
+	}
 
 	private int array[];
 	private int swapCount;
-
-	Task5() {
-	}
 
 	private void sort(int[] inputArr) {
 
@@ -55,7 +62,7 @@ class Task5 {
 		array[j] = temp;
 	}
 
-	boolean solution(int[] A) {
+	public boolean solution(int[] A) {
 		sort(A);
 		return swapCount <= 1;
 	}

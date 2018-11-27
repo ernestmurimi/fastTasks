@@ -1,10 +1,18 @@
+package task4;
+
 import java.util.*;
 
-class Task4 {
-	Task4() {
+public class Solution {
+	public static void main(String[] args) {
+		Solution obj = new Solution();
+		int[] arr = {2, 2, 2, 2, 1, 2, -1, 2, 1, 3};
+		System.out.println(obj.solution(arr));
 	}
 
-	int solution(int[] A) {
+	public Solution() {
+	}
+
+	public int solution(int[] A) {
 		Integer currIndex = null;
 		Integer currCount = 0;
 

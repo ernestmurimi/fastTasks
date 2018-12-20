@@ -16,14 +16,11 @@ public class Solution {
 		if (A.length == 0 || A.length == K || isArrayUniform(A)) {
 			return A;
 		}
-		for (int i = 0; i < K; i++) {
-			int lastElement = A[A.length - 1];
-			for (int j = A.length - 1; j > 0; j--) {
-				A[j] = A[j - 1];
-			}
-			A[0] = lastElement;
+		int[] B = new int[A.length];
+		for (int i = 0; i < A.length; i++) {
+			B[(i + K) % A.length] = A[i];
 		}
-		return A;
+		return B;
 	}
 
 	private boolean isArrayUniform(int[] arr) {

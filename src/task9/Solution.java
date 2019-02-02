@@ -1,8 +1,5 @@
 package task9;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class Solution {
 	public static void main(String[] args) {
 		Solution obj = new Solution();
@@ -14,22 +11,56 @@ public class Solution {
 	}
 
 	public boolean solution(int[] A) {
-		Integer[] A_desc = Arrays.stream(A).boxed().toArray(Integer[]::new);
-		Arrays.sort(A_desc, Collections.reverseOrder());
-		for (int i = 0; i < A_desc.length; i++) {
-			for (int j = i + 1; j < A_desc.length; j++) {
-				if (j + 1 < A_desc.length && A[j] + A[j + 1] < A[i]) {
-					break;
-				}
-				for (int k = j + 1; k < A_desc.length; k++) {
-					if (A[j] + A[k] == A[i]) {
-						return true;
-					} else if (A[j] + A[k] < A[i]) {
-						break;
-					}
+		quickSortInDescendingOrder(A, 0, A.length - 1);
+		int idx1;
+		int idx2;
+		int sumToSearch;
+		int currSum;
+
+		for (int i = 0; i < A.length - 2; i++) {
+			sumToSearch = A[i];
+			idx1 = i + 1;
+			idx2 = A.length - 1;
+			while (idx1 < idx2) {
+				currSum = A[idx1] + A[idx2];
+				if (currSum < sumToSearch) {
+					idx2--;
+				} else if (currSum > sumToSearch) {
+					idx1++;
+				} else {
+					return true;
 				}
 			}
 		}
 		return false;
+	}
+
+	private static void quickSortInDescendingOrder(int[] numbers, int low, int high) {
+		int i = low;
+		int j = high;
+		int temp;
+		int middle = numbers[(low + high) / 2];
+
+		while (i < j) {
+			while (numbers[i] > middle) {
+				i++;
+			}
+			while (numbers[j] < middle) {
+				j--;
+			}
+			if (j >= i) {
+				temp = numbers[i];
+				numbers[i] = numbers[j];
+				numbers[j] = temp;
+				i++;
+				j--;
+			}
+		}
+		if (low < j) {
+			quickSortInDescendingOrder(numbers, low, j);
+		}
+		if (i < high) {
+			quickSortInDescendingOrder(numbers, i, high);
+		}
 	}
 }

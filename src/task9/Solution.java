@@ -18,6 +18,9 @@ public class Solution {
 		int currSum;
 
 		for (int i = 0; i < A.length - 2; i++) {
+			if (A[i + 1] + A[i + 2] < A[i]) {
+				break;
+			}
 			sumToSearch = A[i];
 			idx1 = i + 1;
 			idx2 = A.length - 1;

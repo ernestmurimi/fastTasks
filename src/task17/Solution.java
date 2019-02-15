@@ -14,20 +14,27 @@ public class Solution {
 	public int solution(int[] A) throws ArrayIsTooSmallToSplitIt {
 		if (A.length < 2) {
 			throw new ArrayIsTooSmallToSplitIt("Array is too small to split it!");
-		}
-		int sum1 = A[0], sum2 = 0, differenceToReturn, currDifference;
-		for (int i = 1; i < A.length; i++) {
-			sum2 += A[i];
-		}
-		differenceToReturn = Math.abs(sum1 - sum2);
-		for (int i = 2; i < A.length; i++) {
-			sum1 += A[i - 1];
-			sum2 -= A[i - 1];
-			currDifference = Math.abs(sum1 - sum2);
-			if (currDifference < differenceToReturn) {
-				differenceToReturn = currDifference;
+		} else if (A.length == 2) {
+			return Math.abs(A[0] - A[1]);
+		} else {
+			int sum1 = A[0];
+			int sum2 = 0;
+			int minDifference;
+			int currDifference;
+
+			for (int i = 1; i < A.length; i++) {
+				sum2 += A[i];
 			}
+			minDifference = Math.abs(sum1 - sum2);
+			for (int i = 2; i < A.length; i++) {
+				sum1 += A[i - 1];
+				sum2 -= A[i - 1];
+				currDifference = Math.abs(sum1 - sum2);
+				if (currDifference < minDifference) {
+					minDifference = currDifference;
+				}
+			}
+			return minDifference;
 		}
-		return differenceToReturn;
 	}
 }

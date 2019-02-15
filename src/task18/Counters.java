@@ -1,5 +1,7 @@
 package task18;
 
+import java.util.Arrays;
+
 class Counters {
 	private int[] counters;
 	private int maxCounter = 0;
@@ -18,9 +20,7 @@ class Counters {
 	}
 
 	void setAllCountersToMax() {
-		for (int i = 0; i < counters.length; i++) {
-			counters[i] = maxCounter;
-		}
+		Arrays.fill(counters, maxCounter);
 	}
 
 	int[] getCounters() {

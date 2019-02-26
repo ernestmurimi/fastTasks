@@ -12,34 +12,36 @@ public class Solution {
 	}
 
 	public int[] solution(String S, int[] P, int[] Q) {
-		final int A_IMPACT_FACTOR = 1;
-		final int C_IMPACT_FACTOR = 2;
-		final int G_IMPACT_FACTOR = 3;
-		final int T_IMPACT_FACTOR = 4;
-		int[] impactFactors = new int[S.length()];
-		int[] result = new int[P.length];
-
+		int[][] nucleotides = new int[3][S.length() + 1];
+		int a, c, g;
 		for (int i = 0; i < S.length(); i++) {
+			a = 0;
+			c = 0;
+			g = 0;
 			if (S.charAt(i) == 'A') {
-				impactFactors[i] = A_IMPACT_FACTOR;
+				a = 1;
 			} else if (S.charAt(i) == 'C') {
-				impactFactors[i] = C_IMPACT_FACTOR;
+				c = 1;
 			} else if (S.charAt(i) == 'G') {
-				impactFactors[i] = G_IMPACT_FACTOR;
-			} else {
-				impactFactors[i] = T_IMPACT_FACTOR;
+				g = 1;
 			}
+			nucleotides[0][i + 1] = nucleotides[0][i] + a;
+			nucleotides[1][i + 1] = nucleotides[1][i] + c;
+			nucleotides[2][i + 1] = nucleotides[2][i] + g;
 		}
+		int[] result = new int[P.length];
 		for (int i = 0; i < P.length; i++) {
 			int indexFrom = P[i];
-			int indexTo = Q[i];
-			int minImpactFactor = Integer.MAX_VALUE;
-			for (int j = indexFrom; j <= indexTo; j++) {
-				if (impactFactors[j] < minImpactFactor) {
-					minImpactFactor = impactFactors[j];
-				}
+			int indexTo = Q[i] + 1;
+			if (nucleotides[0][indexTo] - nucleotides[0][indexFrom] > 0) {
+				result[i] = 1;
+			} else if (nucleotides[1][indexTo] - nucleotides[1][indexFrom] > 0) {
+				result[i] = 2;
+			} else if (nucleotides[2][indexTo] - nucleotides[2][indexFrom] > 0) {
+				result[i] = 3;
+			} else {
+				result[i] = 4;
 			}
-			result[i] = minImpactFactor;
 		}
 		return result;
 	}
